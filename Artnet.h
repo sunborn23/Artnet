@@ -30,6 +30,9 @@ THE SOFTWARE.
 #if defined(ARDUINO_SAMD_ZERO)
     #include <WiFi101.h>
     #include <WiFiUdp.h>
+#else if defined(ARDUINO_ESP8266_ESP12)
+	#include <ESP8266WiFi.h>
+	#include <WiFiUdp.h>
 #else
     #include <Ethernet.h>
     #include <EthernetUdp.h>
@@ -89,7 +92,7 @@ public:
   }
 
 private:
-  #if defined(ARDUINO_SAMD_ZERO)
+  #if defined(ARDUINO_SAMD_ZERO) or defined (ARDUINO_ESP8266_ESP12)
     WiFiUDP Udp;
   #else
     EthernetUDP Udp;
